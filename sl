@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="19.3.1"
+VERSION="20.1.0-dev"
 
 MAIN_CLASS="com.oracle.truffle.sl.launcher.SLMain"
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd -P)"
@@ -29,8 +29,10 @@ else
         if [[ "$GRAALVM_VERSION" != "" ]]; then
             GRAALVM_VERSION=$(echo "$GRAALVM_VERSION" | awk 'BEGIN {FS="="} {print $2}')
             if [[ "$GRAALVM_VERSION" != "$VERSION" ]]; then
+                echo "$GRAALVM_VERSION"
+                echo "$VERSION"
                 echo "Wrong version of GraalVM in \$JAVA_HOME. Expected: $VERSION, found $GRAALVM_VERSION"
-                exit 1
+                # exit 1
             fi
         fi
         JAVACMD=${JAVACMD:=$JAVA_HOME/bin/java}
